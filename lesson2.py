@@ -51,3 +51,49 @@ rbordered_img = cv2.copyMakeBorder(pika4, 20 ,20, 20 ,20, cv2.BORDER_REFLECT, va
 cv2.imshow(" Reflected Bordered image", rbordered_img)
 cv2.waitKey()
 cv2.destroyAllWindows()
+
+import cv2
+
+pikachu = cv2.imread("pika.png", cv2.IMREAD_COLOR)
+cv2.imshow("pikachu1", pikachu)
+pikachu2 = cv2.cvtColor(pikachu , cv2.COLOR_BGR2GRAY)  
+cv2.imshow("pikachu2" , pikachu2)
+pikachu3 = cv2.cvtColor(pikachu, cv2.COLOR_BGR2HSV)
+cv2.imshow("pikachu3", pikachu3)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#rotation of images
+pikachu4 = cv2.imread("pika.png", cv2.IMREAD_COLOR)
+cv2.imshow("pikachu4", pikachu4)
+[rows, cols] = pikachu4.shape[:2]
+m = cv2.getRotationMatrix2D((cols/2, rows/2), 144, 1)
+result = cv2.warpAffine(pikachu4, m, [cols, rows])
+cv2.imshow("rotated img", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#blurring the images
+pikachu5 = cv2.imread("pika.png", cv2.IMREAD_COLOR)
+cv2.imshow("pikachu5", pikachu5)
+#gaussian blur
+gaussian_blur = cv2.GaussianBlur(pikachu5, (7, 7), 0)
+cv2.imshow("gaussian blurred img", gaussian_blur)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#median blur
+pikachu6 = cv2.imread("pika.png", cv2.IMREAD_COLOR)
+cv2.imshow("pikachu6", pikachu6)
+median_blur = cv2.medianBlur(pikachu5, 3)
+cv2.imshow("median blurred img", median_blur)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#bilateral blur
+pikachu6 = cv2.imread("pika.png", cv2.IMREAD_COLOR)
+cv2.imshow("pikachu6", pikachu6)
+bilateral_blur = cv2.bilateralFilter(pikachu6, 20, 75, 75)
+cv2.imshow("bilateral blurred img", bilateral_blur)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
